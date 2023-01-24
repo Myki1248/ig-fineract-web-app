@@ -10,7 +10,7 @@
 
           <mat-form-field (click)="transactionsDatePicker.open()">
             <mat-label>Transaction Date</mat-label>
-            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="transactionsDatePicker" required
+            <input matInput [min]="minDate" [matDatepicker]="transactionsDatePicker" required
               formControlName="transactionDate">
             <mat-datepicker-toggle matSuffix [for]="transactionsDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #transactionsDatePicker></mat-datepicker>

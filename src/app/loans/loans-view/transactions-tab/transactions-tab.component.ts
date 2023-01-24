@@ -80,9 +80,10 @@ export class TransactionsTabComponent implements OnInit {
    * MERCHANT_ISSUED_REFUND:21
    * PAYOUT_REFUND:22
    * GOODWILL_CREDIT:23
+   * PRE_PAY_LOAN:28
    */
   showTransactions(transactionsData: any) {
-    if ([1, 2, 4, 9, 20, 21, 22, 23].includes(transactionsData.type.id)) {
+    if ([1, 2, 4, 9, 20, 21, 22, 23, 28].includes(transactionsData.type.id)) {
       this.router.navigate([transactionsData.id], { relativeTo: this.route });
     }
   }

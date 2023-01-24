@@ -52,7 +52,6 @@ export class ForeclosureComponent implements OnInit {
       'outstandingFeeChargesPortion': [{value: '', disabled: true}],
       'outstandingPenaltyChargesPortion': [{value: '', disabled: true}],
       'transactionAmount': [{value: '', disabled: true}],
-      'interestAccruedAfterDeath': '',
       'note': ''
     });
   }
@@ -84,11 +83,6 @@ export class ForeclosureComponent implements OnInit {
         outstandingPenaltyChargesPortion: this.foreclosuredata.penaltyChargesPortion,
         foreClosureChargesPortion: this.foreclosuredata.foreClosureChargesPortion
       });
-      if (this.foreclosuredata.unrecognizedIncomePortion) {
-        this.foreclosureForm.patchValue({
-          interestAccruedAfterDeath: this.foreclosuredata.unrecognizedIncomePortion
-        });
-      }
       this.calculateTransactionAmount();
       this.paymentTypes = this.foreclosuredata.paymentTypeOptions;
     });

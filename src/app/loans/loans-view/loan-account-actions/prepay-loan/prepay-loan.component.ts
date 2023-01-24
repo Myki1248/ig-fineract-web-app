@@ -122,7 +122,7 @@ export class PrepayLoanComponent implements OnInit {
       dateFormat,
       locale
     };
-    this.loanService.submitLoanActionButton(this.loanId, data, 'repayment')
+    this.loanService.submitLoanActionButton(this.loanId, data, 'prepayloan')
       .subscribe((response: any) => {
         this.router.navigate(['../../general'], { relativeTo: this.route });
     });
