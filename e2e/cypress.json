@@ -5,5 +5,5 @@
   "screenshotsFolder": "e2e/cypress/screenshots",
   "pluginsFile": "e2e/cypress/plugins/index.ts",
   "fixturesFolder": "e2e/cypress/fixtures",
-  "baseUrl": "http://localhost:4200"
+  "baseUrl": "https://fin-fe.indiagiftsgold.com"
 }
