@@ -25,6 +25,8 @@ export class MakeRepaymentComponent implements OnInit {
   paymentTypes: any;
   /** Show payment details */
   showPaymentDetails = false;
+  /** Payment till due date */
+  paymentTillDueDate = false;
   /** Minimum Date allowed. */
   minDate = new Date(2000, 0, 1);
   /** Maximum Date allowed. */
@@ -112,7 +114,7 @@ export class MakeRepaymentComponent implements OnInit {
       dateFormat,
       locale
     };
-    const command = this.dataObject.type.code.split('.')[1];
+    const command = this.paymentTillDueDate ? "repayment-due-date" : this.dataObject.type.code.split('.')[1];
     this.loanService.submitLoanActionButton(this.loanId, data, command)
       .subscribe((response: any) => {
         this.router.navigate(['../../transactions'], { relativeTo: this.route });
