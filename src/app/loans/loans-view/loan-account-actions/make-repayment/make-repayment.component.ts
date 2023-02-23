@@ -25,12 +25,11 @@ export class MakeRepaymentComponent implements OnInit {
   paymentTypes: any;
   /** Show payment details */
   showPaymentDetails = false;
-  /** Payment till due date */
-  paymentTillDueDate = false;
   /** Minimum Date allowed. */
   minDate = new Date(2000, 0, 1);
   /** Maximum Date allowed. */
   maxDate = new Date();
+  repaymentdata: any;
   /** Repayment Loan Form */
   repaymentLoanForm: FormGroup;
 
@@ -58,6 +57,7 @@ export class MakeRepaymentComponent implements OnInit {
     this.maxDate = this.settingsService.businessDate;
     this.createRepaymentLoanForm();
     this.setRepaymentLoanDetails();
+    this.onChanges();
   }
 
   /**
@@ -69,8 +69,18 @@ export class MakeRepaymentComponent implements OnInit {
       'transactionAmount': ['', Validators.required],
       'externalId': '',
       'paymentTypeId': '',
-      'note': ''
+      'note': '',
+      'paymentTillDueDate': false,
     });
+  }
+
+  onChanges(): void {
+    this.repaymentLoanForm.get('transactionDate').valueChanges.subscribe(val => {
+      this.retrieveLoanRepaymentTemplate(val, this.repaymentLoanForm.value.paymentTillDueDate);
+    })
+    this.repaymentLoanForm.get('paymentTillDueDate').valueChanges.subscribe(val => {
+      this.retrieveLoanRepaymentTemplate(this.repaymentLoanForm.value.transactionDate, val);
+    })
   }
 
   setRepaymentLoanDetails() {
@@ -100,6 +110,25 @@ export class MakeRepaymentComponent implements OnInit {
     }
   }
 
+  retrieveLoanRepaymentTemplate(val: any, paymentTillDueDate: boolean) {
+    const dateFormat = this.settingsService.dateFormat;
+    const transactionDateFormatted = this.dateUtils.formatDate(val, dateFormat);
+    const data = {
+      command: !paymentTillDueDate ? "repayment" : 'repayment-due-date',
+      dateFormat: this.settingsService.dateFormat,
+      locale: this.settingsService.language.code,
+      transactionDate: transactionDateFormatted
+    };
+    this.loanService.getRepaymentData(this.loanId, data)
+    .subscribe((response: any) => {
+      this.repaymentdata = response;
+
+      this.repaymentLoanForm.patchValue({
+        transactionAmount: this.repaymentdata.amount
+      });
+    });
+  }
+
   /** Submits the repayment form */
   submit() {
     const repaymentLoanFormData = this.repaymentLoanForm.value;
@@ -110,11 +139,15 @@ export class MakeRepaymentComponent implements OnInit {
       repaymentLoanFormData.transactionDate = this.dateUtils.formatDate(prevTransactionDate, dateFormat);
     }
     const data = {
-      ...repaymentLoanFormData,
+      transactionDate: this.repaymentLoanForm.value.transactionDate,
+      transactionAmount: this.repaymentLoanForm.value.transactionAmount,
+      externalId: this.repaymentLoanForm.value.externalId,
+      paymentTypeId: this.repaymentLoanForm.value.paymentTypeId,
+      note: this.repaymentLoanForm.value.note,
       dateFormat,
       locale
     };
-    const command = this.paymentTillDueDate ? "repayment-due-date" : this.dataObject.type.code.split('.')[1];
+    const command = this.repaymentLoanForm.value.paymentTillDueDate ? "repayment-due-date" : this.dataObject.type.code.split('.')[1];
     this.loanService.submitLoanActionButton(this.loanId, data, command)
       .subscribe((response: any) => {
         this.router.navigate(['../../transactions'], { relativeTo: this.route });

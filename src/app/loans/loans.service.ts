@@ -244,6 +244,18 @@ export class LoansService {
   }
 
   /**
+   * @param {string|number} loanId Loan Id.
+   * @param {any} foreclosuredata ForeClosure Data
+   */
+  getRepaymentData(loanId: string | number, repaymentdata: any) {
+    const httpParams = new HttpParams().set('command', repaymentdata.command)
+      .set('dateFormat', repaymentdata.dateFormat)
+      .set('locale', repaymentdata.locale)
+      .set('transactionDate', repaymentdata.transactionDate);
+    return this.http.get(`/loans/${loanId}/transactions/template`, { params: httpParams });
+  }
+
+  /**
    * @param {string|number} loanId Loan Id
    * @param {any} data Data
    */
