@@ -526,6 +526,10 @@ export class LoansService {
    * @returns Object with Loan Account payload data.
    */
   buildLoanRequestPayload(loansAccount: any, loansAccountTemplate: any, calendarOptions: any, locale: string, dateFormat: string): any {
+    const disbursementData = loansAccount.disbursementData.map((item: any) => ({
+      expectedDisbursementDate: this.dateUtils.formatDate(item.expectedDisbursementDate, dateFormat),
+      principal: item.principal
+    }))
     const loansAccountData = {
       ...loansAccount,
       charges: loansAccount.charges.map((charge: any) => ({
@@ -537,10 +541,7 @@ export class LoansService {
         clientCollateralId: collateralEle.type.collateralId,
         quantity: collateralEle.value,
       })),
-      disbursementData: loansAccount.disbursementData.map((item: any) => ({
-        expectedDisbursementDate: this.dateUtils.formatDate(item.expectedDisbursementDate, dateFormat),
-        principal: item.principal
-      })),
+      disbursementData: disbursementData,
       interestChargedFromDate: this.dateUtils.formatDate(loansAccount.interestChargedFromDate, dateFormat),
       repaymentsStartingFromDate: this.dateUtils.formatDate(loansAccount.repaymentsStartingFromDate, dateFormat),
       submittedOnDate: this.dateUtils.formatDate(loansAccount.submittedOnDate, dateFormat),
@@ -575,6 +576,7 @@ export class LoansService {
       delete loansAccountData.disbursementData;
     }
     delete loansAccountData.isValid;
+    delete loansAccountData.multiDisburseLoan;
     loansAccountData.principal = loansAccountData.principalAmount;
     delete loansAccountData.principalAmount;
 
