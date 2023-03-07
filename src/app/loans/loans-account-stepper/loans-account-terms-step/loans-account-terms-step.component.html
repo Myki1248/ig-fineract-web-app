@@ -211,7 +211,7 @@
       <input type="number" matInput formControlName="fixedEmiAmount">
     </mat-form-field>
 
-    <ng-container *ngIf="loansAccountTermsData?.canUseForTopup">
+    <ng-container *ngIf="loansAccountTermsData?.product?.canUseForTopup">
 
       <mat-checkbox fxFlex="48%" formControlName="isTopup">
         <p>Is Topup Loan?</p>
