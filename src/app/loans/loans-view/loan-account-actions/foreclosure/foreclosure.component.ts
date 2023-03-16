@@ -42,6 +42,7 @@ export class ForeclosureComponent implements OnInit {
     this.maxDate = this.settingsService.businessDate;
     this.createforeclosureForm();
     this.onChanges();
+    this.retrieveLoanForeclosureTemplate(this.foreclosureForm.value.transactionDate);
   }
 
   createforeclosureForm() {
