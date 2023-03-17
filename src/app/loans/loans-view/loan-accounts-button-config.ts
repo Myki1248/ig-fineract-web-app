@@ -142,7 +142,7 @@ export class LoansAccountButtonConfiguration {
                       name: 'Merchant Issued Refund',
                       icon: 'coins',
                       taskPermissionName: 'CREATE_MERCHANT_ISSUED_REFUND',
-                  }
+                  },
                 ];
                 break;
             default:
@@ -252,6 +252,15 @@ export class LoansAccountButtonConfiguration {
                     {
                         name: 'Loan Screen Report',
                         taskPermissionName: 'READ_LOAN',
+                    },
+                ];
+                this.optionPaymentArray = [];
+                break;
+            case 'Overpaid':
+                this.optionArray = [
+                    {
+                        name: 'Close',
+                        taskPermissionName: 'CLOSE_LOAN',
                     },
                 ];
                 this.optionPaymentArray = [];
