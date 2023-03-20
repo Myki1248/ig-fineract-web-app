@@ -85,15 +85,6 @@
             </mat-select>
           </mat-form-field>
 
-          <span fxFlex="75%" class="expandcollapsebutton m-l-10 m-t-40">
-            <span class="m-l">Payment till today</span>
-            <mat-slide-toggle formControlName="paymentTillDueDate">
-              <div [className]="repaymentLoanForm.value.paymentTillDueDate ? 'enabled' : 'disabled'">
-                <span class="m-l-10">Payment till due date</span>
-              </div>
-            </mat-slide-toggle>
-          </span>
-
           <ng-container *ngIf="showPaymentDetails">
             <mat-form-field>
               <mat-label> Account #</mat-label>
