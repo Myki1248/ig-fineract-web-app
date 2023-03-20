@@ -78,9 +78,9 @@ export class MakeRepaymentComponent implements OnInit {
 
   onChanges(): void {
     this.repaymentLoanForm.get('transactionDate').valueChanges.subscribe(val => {
-      this.retrieveLoanRepaymentTemplate(val, this.repaymentLoanForm.value.paymentTillDueDate);
+      this.retrieveLoanRepaymentTemplate(val, this.repaymentLoanForm.value.paymentCommandTypeId);
     })
-    this.repaymentLoanForm.get('paymentTillDueDate').valueChanges.subscribe(val => {
+    this.repaymentLoanForm.get('paymentCommandTypeId').valueChanges.subscribe(val => {
       this.retrieveLoanRepaymentTemplate(this.repaymentLoanForm.value.transactionDate, val);
     })
   }
@@ -130,11 +130,11 @@ export class MakeRepaymentComponent implements OnInit {
     }
   }
 
-  retrieveLoanRepaymentTemplate(val: any, paymentTillDueDate: boolean) {
+  retrieveLoanRepaymentTemplate(val: any, paymentCommandTypeId: boolean) {
     const dateFormat = this.settingsService.dateFormat;
     const transactionDateFormatted = this.dateUtils.formatDate(val, dateFormat);
     const data = {
-      command: !paymentTillDueDate ? "repayment" : 'repayment-due-date',
+      command: paymentCommandTypeId,
       dateFormat: this.settingsService.dateFormat,
       locale: this.settingsService.language.code,
       transactionDate: transactionDateFormatted
