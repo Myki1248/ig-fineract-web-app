@@ -75,24 +75,15 @@
             </mat-select>
           </mat-form-field>
 
-          <div fxFlexFill>
-            <span fxFlex="75%" class="expandcollapsebutton m-l-10 m-t-40" (click)="addPaymentDetails()">
-              <mat-slide-toggle [(ngModel)]="showPaymentDetails" [ngModelOptions]="{standalone: true}">
-                <div [className]="showPaymentDetails ? 'enabled' : 'disabled'">
-                  <span class="m-l-10">Show Payment Details</span>
-                </div>
-              </mat-slide-toggle>
-            </span>
-          </div>
           <br/>
-          <span fxFlex="75%" class="expandcollapsebutton m-l-10 m-t-40">
-            <span class="m-l">Payment till today</span>
-            <mat-slide-toggle formControlName="paymentTillDueDate">
-              <div [className]="repaymentLoanForm.value.paymentTillDueDate ? 'enabled' : 'disabled'">
-                <span class="m-l-10">Payment till due date</span>
-              </div>
-            </mat-slide-toggle>
-          </span>
+          <mat-form-field>
+            <mat-label>Payment Command Type</mat-label>
+            <mat-select formControlName="paymentCommandTypeId">
+              <mat-option *ngFor="let paymentCommandType of paymentCommandTypes" [value]="paymentCommandType.id">
+                {{ paymentCommandType.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
           <ng-container *ngIf="showPaymentDetails">
             <mat-form-field>

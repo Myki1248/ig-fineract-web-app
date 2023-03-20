@@ -23,6 +23,7 @@ export class MakeRepaymentComponent implements OnInit {
   loanId: string;
   /** Payment Type Options */
   paymentTypes: any;
+  paymentCommandTypes: any;
   /** Show payment details */
   showPaymentDetails = false;
   /** Minimum Date allowed. */
@@ -69,6 +70,7 @@ export class MakeRepaymentComponent implements OnInit {
       'transactionAmount': ['', Validators.required],
       'externalId': '',
       'paymentTypeId': '',
+      'paymentCommandTypeId': 'repayment',
       'note': '',
       'paymentTillDueDate': false,
     });
@@ -85,6 +87,24 @@ export class MakeRepaymentComponent implements OnInit {
 
   setRepaymentLoanDetails() {
     this.paymentTypes = this.dataObject.paymentTypeOptions;
+    this.paymentCommandTypes = [
+      { 
+        "id": "repayment",
+        "name": "Repayment till today",
+      },
+      {
+        "id": "repayment-due-date",
+        "name": "Repayment till due date"
+      },
+      {
+        "id": "prepayloan",
+        "name": "Part payment"
+      },
+      {
+        "id": "principal-waive-off-closure",
+        "name": "Principal waive off for closure"
+      },
+    ];
     this.repaymentLoanForm.patchValue({
       transactionAmount: this.dataObject.amount
     });
@@ -147,7 +167,7 @@ export class MakeRepaymentComponent implements OnInit {
       dateFormat,
       locale
     };
-    const command = this.repaymentLoanForm.value.paymentTillDueDate ? "repayment-due-date" : this.dataObject.type.code.split('.')[1];
+    const command = this.repaymentLoanForm.value.paymentCommandTypeId;
     this.loanService.submitLoanActionButton(this.loanId, data, command)
       .subscribe((response: any) => {
         this.router.navigate(['../../transactions'], { relativeTo: this.route });
