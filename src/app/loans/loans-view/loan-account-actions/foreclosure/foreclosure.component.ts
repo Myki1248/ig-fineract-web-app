@@ -82,21 +82,10 @@ export class ForeclosureComponent implements OnInit {
         outstandingInterestPortion: this.foreclosuredata.interestPortion,
         outstandingFeeChargesPortion: this.foreclosuredata.feeChargesPortion,
         outstandingPenaltyChargesPortion: this.foreclosuredata.penaltyChargesPortion,
-        foreClosureChargesPortion: this.foreclosuredata.foreClosureChargesPortion
+        foreClosureChargesPortion: this.foreclosuredata.foreClosureChargesPortion,
+        transactionAmount: this.foreclosuredata.amount
       });
-      this.calculateTransactionAmount();
       this.paymentTypes = this.foreclosuredata.paymentTypeOptions;
-    });
-  }
-
-  calculateTransactionAmount() {
-    let transactionAmount = 0;
-    transactionAmount += parseFloat(this.foreclosuredata.principalPortion);
-    transactionAmount += parseFloat(this.foreclosuredata.interestPortion);
-    transactionAmount += parseFloat(this.foreclosuredata.feeChargesPortion);
-    transactionAmount += parseFloat(this.foreclosuredata.penaltyChargesPortion);
-    this.foreclosureForm.patchValue({
-      transactionAmount: transactionAmount
     });
   }
 
