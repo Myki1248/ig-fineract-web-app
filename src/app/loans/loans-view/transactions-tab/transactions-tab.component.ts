@@ -17,6 +17,7 @@ export class TransactionsTabComponent implements OnInit {
   tempTransaction: any;
   /** Form control to handle accural parameter */
   hideAccrualsParam: FormControl;
+  hideReversedParam: FormControl;
   /** Stores the status of the loan account */
   status: string;
   /** Columns to be displayed in original schedule table. */
@@ -37,12 +38,10 @@ export class TransactionsTabComponent implements OnInit {
 
   ngOnInit() {
     this.hideAccrualsParam = new FormControl(false);
-    this.tempTransaction.forEach((element: any) => {
-      if (element.type.accrual) {
-        this.tempTransaction = this.removeItem(this.tempTransaction, element);
-      }
-    });
-    this.showTransactionsData = this.transactions;
+    this.hideReversedParam = new FormControl(false);
+    this.hideAccruals();
+    this.hideReversed();
+    this.hideReversedParam = new FormControl(true);
   }
 
   /**
@@ -57,7 +56,27 @@ export class TransactionsTabComponent implements OnInit {
   }
 
   hideAccruals()  {
-    if (!this.hideAccrualsParam.value) {
+    this.tempTransaction = this.transactions;
+    this.tempTransaction.forEach((element: any) => {
+      if ((element.type.accrual && !this.hideAccrualsParam.value) || (element.manuallyReversed && this.hideReversedParam.value)) {
+        this.tempTransaction = this.removeItem(this.tempTransaction, element);
+      }
+    });
+    if (!this.hideAccrualsParam.value || this.hideReversedParam.value) {
+      this.showTransactionsData = this.tempTransaction;
+    } else {
+      this.showTransactionsData = this.transactions;
+    }
+  }
+
+  hideReversed()  {
+    this.tempTransaction = this.transactions;
+    this.tempTransaction.forEach((element: any) => {
+      if ((element.type.accrual && this.hideAccrualsParam.value) || (element.manuallyReversed && !this.hideReversedParam.value)) {
+        this.tempTransaction = this.removeItem(this.tempTransaction, element);
+      }
+    });
+    if (this.hideAccrualsParam.value || !this.hideReversedParam.value) {
       this.showTransactionsData = this.tempTransaction;
     } else {
       this.showTransactionsData = this.transactions;

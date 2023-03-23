@@ -2,6 +2,7 @@
 
   <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px" class="transaction-buttons" *ngIf="checkStatus()">
     <mat-checkbox [formControl]="hideAccrualsParam" (click)="hideAccruals()" class="accruals">Hide Accruals</mat-checkbox>
+    <mat-checkbox [formControl]="hideReversedParam" (click)="hideReversed()" class="accruals">Hide Reversed</mat-checkbox>
     <button mat-raised-button color="primary" [routerLink]="['export']">
       Export
     </button>
