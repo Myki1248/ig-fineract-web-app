@@ -90,7 +90,7 @@ export class MakeRepaymentComponent implements OnInit {
     this.paymentCommandTypes = [
       { 
         "id": "repayment",
-        "name": "Repayment till today",
+        "name": "Repayment till today (disabled)",
       },
       {
         "id": "repayment-due-date",
