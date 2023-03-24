@@ -89,12 +89,12 @@ export class MakeRepaymentComponent implements OnInit {
     this.paymentTypes = this.dataObject.paymentTypeOptions;
     this.paymentCommandTypes = [
       {
-        "id": "repayment",
-        "name": "Repayment till today (disabled)",
-      },
-      {
         "id": "repayment-due-date",
         "name": "Repayment till due date"
+      },
+      {
+        "id": "repayment",
+        "name": "Repayment till today (disabled)",
       },
       {
         "id": "prepayloan",
@@ -133,6 +133,7 @@ export class MakeRepaymentComponent implements OnInit {
   retrieveLoanRepaymentTemplate(val: any, paymentCommandTypeId: boolean) {
     const dateFormat = this.settingsService.dateFormat;
     const transactionDateFormatted = this.dateUtils.formatDate(val, dateFormat);
+    console.log(paymentCommandTypeId)
     const data = {
       command: paymentCommandTypeId,
       dateFormat: this.settingsService.dateFormat,
