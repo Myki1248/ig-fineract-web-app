@@ -88,13 +88,13 @@ export class MakeRepaymentComponent implements OnInit {
   setRepaymentLoanDetails() {
     this.paymentTypes = this.dataObject.paymentTypeOptions;
     this.paymentCommandTypes = [
-      { 
-        "id": "repayment",
-        "name": "Repayment till today (disabled)",
-      },
       {
         "id": "repayment-due-date",
         "name": "Repayment till due date"
+      },
+      {
+        "id": "repayment",
+        "name": "Repayment till today (disabled)",
       },
       {
         "id": "prepayloan",
