@@ -93,16 +93,20 @@ export class MakeRepaymentComponent implements OnInit {
         "name": "Repayment till due date"
       },
       {
-        "id": "repayment",
-        "name": "Repayment till today (disabled)",
-      },
-      {
         "id": "prepayloan",
         "name": "Part payment"
       },
       {
         "id": "principal-waive-off-closure",
         "name": "Principal waive off for closure"
+      },
+      {
+        "id": "repayment",
+        "name": "Repayment till today (disabled)",
+      },
+      {
+        "id": "foreclosure",
+        "name": "Foreclosure (disabled)",
       },
     ];
     this.repaymentLoanForm.patchValue({
