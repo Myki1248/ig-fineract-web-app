@@ -43,11 +43,11 @@ export class LoansAccountButtonConfiguration {
                         icon: 'plus',
                         taskPermissionName: 'CREATE_LOANCHARGE',
                     },
-                    {
-                        name: 'Foreclosure',
-                        icon: 'heart-broken',
-                        taskPermissionName: 'FORECLOSURE_LOAN',
-                    },
+                    // {
+                    //     name: 'Foreclosure',
+                    //     icon: 'heart-broken',
+                    //     taskPermissionName: 'FORECLOSURE_LOAN',
+                    // },
                     {
                         name: 'Make Repayment',
                         icon: 'coins',
