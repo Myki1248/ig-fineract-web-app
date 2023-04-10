@@ -1,6 +1,8 @@
 <div class="container">
 
-  <table mat-table [dataSource]="repaymentScheduleDetails.periods" *ngIf="!forEditing">
+  <br/>
+  <mat-checkbox (click)="handleIgSchedule()">IG schedule</mat-checkbox>
+  <table mat-table [dataSource]="periods" *ngIf="!forEditing">
 
     <ng-container matColumnDef="number">
       <th mat-header-cell class="center" *matHeaderCellDef> # </th>
@@ -136,7 +138,7 @@
   <!-- Repayment Schedule to be Edited -->
   <div *ngIf="forEditing" fxLayout="column" fxFlex="100%" >
 
-    <table mat-table [dataSource]="repaymentScheduleDetails.periods">
+    <table mat-table [dataSource]="periods">
 
       <ng-container matColumnDef="number">
         <th mat-header-cell class="center" *matHeaderCellDef> # </th>

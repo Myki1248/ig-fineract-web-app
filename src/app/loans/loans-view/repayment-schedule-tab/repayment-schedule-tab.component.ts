@@ -16,6 +16,8 @@ export class RepaymentScheduleTabComponent implements OnInit {
 
   /** Stores if there is any waived amount */
   isWaived: boolean;
+  igSchedule: boolean = false;
+  periods: any;
   /** Columns to be displayed in original schedule table. */
   displayedColumns: string[] = ['number', 'days', 'date', 'paiddate', 'check', 'balanceOfLoan', 'principalDue', 'interest', 'fees', 'penalties', 'due', 'paid', 'inadvance', 'late', 'waived', 'outstanding'];
   /** Columns to be displayed in editable schedule table. */
@@ -39,6 +41,16 @@ export class RepaymentScheduleTabComponent implements OnInit {
       this.repaymentScheduleDetails = this.loanDetailsDataRepaymentSchedule;
     }
     this.isWaived = this.repaymentScheduleDetails.totalWaived > 0;
+    this.periods = this.repaymentScheduleDetails.periods;
+  }
+
+  handleIgSchedule() {
+    this.igSchedule = !this.igSchedule
+    if (this.igSchedule) {
+      this.periods = this.repaymentScheduleDetails.igPeriods;
+    } else {
+      this.periods = this.repaymentScheduleDetails.periods;
+    }
   }
 
 }
