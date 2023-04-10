@@ -89,6 +89,10 @@ export class MakeRepaymentComponent implements OnInit {
     this.paymentTypes = this.dataObject.paymentTypeOptions;
     this.paymentCommandTypes = [
       {
+        "id": "repayment",
+        "name": "Repayment till today",
+      },
+      {
         "id": "repayment-due-date",
         "name": "Repayment till due date"
       },
@@ -99,10 +103,6 @@ export class MakeRepaymentComponent implements OnInit {
       {
         "id": "principal-waive-off-closure",
         "name": "Principal waive off for closure"
-      },
-      {
-        "id": "repayment",
-        "name": "Repayment till today (disabled)",
       },
       {
         "id": "foreclosure",
