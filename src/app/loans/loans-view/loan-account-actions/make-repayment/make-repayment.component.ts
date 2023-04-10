@@ -70,7 +70,7 @@ export class MakeRepaymentComponent implements OnInit {
       'transactionAmount': ['', Validators.required],
       'externalId': '',
       'paymentTypeId': '',
-      'paymentCommandTypeId': 'repayment-due-date',
+      'paymentCommandTypeId': 'repayment',
       'note': '',
       'paymentTillDueDate': false,
     });
