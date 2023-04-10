@@ -19,7 +19,7 @@ export class RepaymentScheduleTabComponent implements OnInit {
   igSchedule: boolean = false;
   periods: any;
   /** Columns to be displayed in original schedule table. */
-  displayedColumns: string[] = ['number', 'days', 'date', 'paiddate', 'check', 'balanceOfLoan', 'principalDue', 'interest', 'fees', 'penalties', 'due', 'paid', 'inadvance', 'late', 'waived', 'outstanding'];
+  displayedColumns: string[] = ['number', 'days', 'date', 'paiddate', 'check', 'balanceOfLoan', 'roi', 'principalDue', 'interest', 'fees', 'penalties', 'due', 'paid', 'inadvance', 'late', 'waived', 'outstanding'];
   /** Columns to be displayed in editable schedule table. */
   displayedColumnsEdit: string[] = ['number', 'date', 'balanceOfLoan', 'principalDue', 'interest', 'fees', 'due'];
 
