@@ -33,6 +33,20 @@
       </td>
     </ng-container>
 
+    <ng-container matColumnDef="termType">
+      <th mat-header-cell *matHeaderCellDef> Type </th>
+      <td mat-cell *matCellDef="let item">
+        {{ item.termType }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="decimalValue">
+      <th mat-header-cell *matHeaderCellDef> Value </th>
+      <td mat-cell *matCellDef="let item">
+        {{ item.decimalValue }}
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="reason">
       <th mat-header-cell *matHeaderCellDef> Reason </th>
       <td mat-cell *matCellDef="let item">

@@ -14,7 +14,7 @@ import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/conf
 export class RescheduleLoanTabComponent implements OnInit {
 
   loanRescheduleData: any;
-  loanRescheduleDataColumns: string[] = ['id', 'rescheduleFromDate', 'reason', 'status', 'actions'];
+  loanRescheduleDataColumns: string[] = ['id', 'rescheduleFromDate', 'termType', 'decimalValue', 'reason', 'status', 'actions'];
   clientId: any;
 
   constructor(private route: ActivatedRoute,
