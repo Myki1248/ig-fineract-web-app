@@ -29,7 +29,7 @@ export class LoanActionButtonResolver implements Resolve<Object> {
     if (loanActionButton === 'Assign Loan Officer' || loanActionButton === 'Change Loan Officer') {
       return this.loansService.getLoanTemplate(loanId);
     } else if (loanActionButton === 'Make Repayment') {
-      return this.loansService.getLoanActionTemplate(loanId, 'repayment-due-date');
+      return this.loansService.getLoanActionTemplate(loanId, 'repayment');
     } else if (loanActionButton === 'Goodwill Credit') {
       return this.loansService.getLoanActionTemplate(loanId, 'goodwillCredit');
     } else if (loanActionButton === 'Payout Refund') {
